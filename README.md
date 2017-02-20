@@ -1,5 +1,3 @@
-# clover style lib
+# Clover Style Library
 
-
-## Running Clover
-# clf-lib
+## Installing
