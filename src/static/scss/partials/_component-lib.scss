@@ -1,0 +1,94 @@
+.clover-sg__nav {
+  background-color: #000;
+  color: #fff;
+  padding: 20px 25px;
+  h1 {
+    color: inherit;
+    margin-bottom: 0;
+  }
+  ul {
+    display: none;
+  }
+}
+
+.sg__iframe {
+  width: 100%;
+  border: none;
+  height: calc(100vh - 81px);
+}
+
+$sg-spacing: 30px;
+.sg__content-mod {
+  padding: $sg-spacing;
+  background: #f6f6f6;
+}
+
+
+.sg__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sg__item {
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, .05);
+  box-shadow: rgba(0,0,0,0.1) 0px 0 5px;
+  overflow: hidden;
+
+  & + & {
+    margin-top: $sg-spacing;
+  }
+}
+
+.sg__hgroup {
+  padding: 10px;
+}
+
+.sg__example {
+  padding: $sg-spacing;
+  background-color: #fff;
+}
+
+.sg__code-mod {
+  background: #233239;
+  font-size: 14px;
+  padding: $sg-spacing;
+}
+
+.sg__nav {
+  position: relative;
+  padding: 10px 100px 9px 10px;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  background: #fff;
+  font-size: 14px;
+}
+
+.sg__title {
+  font-weight: bold;
+  color: #233239;
+  font-size: inherit;
+  margin-bottom: 0;
+}
+
+.sg__code-toggle {
+  @include absolute(0 0 0 n);
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  padding: 0 10px;
+}
+
+.sg__code-mod {
+  display: none;
+
+  .code-is-visible &{
+    display: block;
+  }
+}
+
+.sg__section-h {
+  * + & {
+    margin-top: 50px;
+  }
+}

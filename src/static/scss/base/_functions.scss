@@ -1,0 +1,55 @@
+// Mix a color with white.
+@function tint($color, $percent) {
+  @return mix(#fff, $color, $percent);
+}
+
+
+// Removing the unit from a number and returning the raw value.
+// It’s used as a helper in the Pixel-to-Ems and Pixel-to-Rems functions.
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+
+// Mix a color with black.
+@function shade($color, $percent) {
+  @return mix(#000, $color, $percent);
+}
+
+
+// Convert pixels to rems. `$em-base` is set by default to `16px`.
+// Override it in a project-specific settings or variables file.
+@function rem($pxval) {
+  @if not unitless($pxval) {
+    $pxval: strip-units($pxval);
+  }
+
+  $base: $em-base;
+  @if not unitless($base) {
+    $base: strip-units($base);
+  }
+  @return ($pxval / $base) * 1rem;
+}
+
+
+// Convert pixels to ems. `$em-base` is set by default to `16px`.
+// Override it in a project-specific settings or variables file.
+@function em($pxval, $base: $em-base) {
+  @if not unitless($pxval) {
+    $pxval: strip-units($pxval);
+  }
+  @if not unitless($base) {
+    $base: strip-units($base);
+  }
+  @return ($pxval / $base) * 1em;
+}
+
+
+// Convert simple "a" to "auto" for shorthander mixin
+@function auto($value) {
+  @if $value == "a" {
+    @return auto;
+  } @else {
+    @return $value;
+  }
+}

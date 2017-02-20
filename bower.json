@@ -1,5 +1,7 @@
 {
   "name": "clover-style-lib",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "google-code-prettify": "^1.0.5"
+  }
 }

@@ -1,0 +1,185 @@
+// Shorthand method for common multi-value declarations such as absolute, padding, and margin.
+// Can also be used as the basis to create new multi-value declarations that we haven't conceived.
+
+@mixin shorthander($position, $value) {
+  $position-prefix: "";
+
+  @if $position == "margin"
+   or $position == "padding" {
+    $position-prefix: $position + "-";
+  } @else if $position == "null" {
+    // do nothing
+  } @else {
+    position: $position;
+  }
+
+  @if length($value) == 1
+  and $value != "n"
+  and $value != "x"
+  and $value != "null" {
+    #{$position-prefix}top: auto($value);
+    #{$position-prefix}right: auto($value);
+    #{$position-prefix}bottom: auto($value);
+    #{$position-prefix}left: auto($value);
+  }
+
+  @if length($value) == 2 {
+    $value-y: nth($value, 1);
+    $value-x: nth($value, 2);
+    @if $value-y != "n"
+    and $value-y != "x"
+    and $value-y != "null" {
+      #{$position-prefix}top: auto($value-y);
+      #{$position-prefix}bottom: auto($value-y);
+    }
+    @if $value-x != "n"
+    and $value-x != "x"
+    and $value-x != "null" {
+      #{$position-prefix}left: auto($value-x);
+      #{$position-prefix}right: auto($value-x);
+    }
+  }
+
+  @if length($value) == 3 {
+    $value-y-top: nth($value, 1);
+    $value-x: nth($value, 2);
+    $value-y-bottom: nth($value, 3);
+
+    @if $value-y-top != "n"
+    and $value-y-top != "x"
+    and $value-y-top != "null" {
+      #{$position-prefix}top: auto($value-y-top);
+    }
+    @if $value-x != "n"
+    and $value-x != "x"
+    and $value-x != "null" {
+      #{$position-prefix}right: auto($value-x);
+      #{$position-prefix}left: auto($value-x);
+    }
+    @if $value-y-bottom != "n"
+    and $value-y-bottom != "x"
+    and $value-y-bottom != "null" {
+      #{$position-prefix}bottom: auto($value-y-bottom);
+    }
+  }
+
+  @if length($value) == 4 {
+    $value-top: nth($value, 1);
+    $value-right: nth($value, 2);
+    $value-bottom: nth($value, 3);
+    $value-left: nth($value, 4);
+
+    @if $value-top != "n"
+    and $value-top != "x"
+    and $value-top != "null" {
+      #{$position-prefix}top: auto($value-top);
+    }
+    @if $value-right != "n"
+    and $value-right != "x"
+    and $value-right != "null" {
+      #{$position-prefix}right: auto($value-right);
+    }
+    @if $value-bottom != "n"
+    and $value-bottom != "x"
+    and $value-bottom != "null" {
+      #{$position-prefix}bottom: auto($value-bottom);
+    }
+    @if $value-left != "n"
+    and $value-left != "x"
+    and $value-left != "null" {
+      #{$position-prefix}left: auto($value-left);
+    }
+  }
+}
+
+@mixin padding($value) {
+  @include shorthander(padding, $value);
+}
+
+@mixin margin($value) {
+  @include shorthander(margin, $value);
+}
+
+@mixin absolute($value) {
+  @include shorthander(absolute, $value);
+}
+
+@mixin fixed($value) {
+  @include shorthander(fixed, $value);
+}
+
+@mixin relative($value) {
+  @include shorthander(relative, $value);
+}
+
+// Write less verbose media queries.
+@mixin mq($bp-1, $bp-2: null) {
+  @if $bp-1 == "max" {
+    @media (max-width: $bp-2 - 1) {
+      @content;
+    }
+  } @elseif $bp-2 == "max" {
+    @media (max-width: $bp-1 - 1) {
+      @content;
+    }
+  } @elseif $bp-2 == null {
+    @media (min-width: $bp-1) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $bp-1) and (max-width:$bp-2 - 1) {
+      @content;
+    }
+  }
+}
+
+
+// Zero'ing out the style on an input field (text input, radio button, etc),
+// which usually isn't reset using standard reset or base styles.
+@mixin reset-input {
+  border: 0;
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  appearance: none;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+
+// Mixin for setting fonts quickly
+@mixin font($family: false, $size: false, $weight: false, $style: false, $ls: false, $caps: false) {
+
+  @if ($family) {
+    font-family: $family;
+  }
+
+  @if ($size) {
+    font-size: $size;
+  }
+
+  // @if ($size and $size > 20px) {
+  //   letter-spacing: 0.03em;
+  // }
+  @if ($weight) {
+    font-weight: $weight;
+  }
+
+  @if ($style) {
+    font-style: $style;
+  }
+
+  @if ($ls) {
+    letter-spacing: $ls;
+  }
+
+  @if $caps == caps {
+    text-transform: uppercase;
+  }
+
+  // @if ($family == $sans && $ls == false) {
+  //   letter-spacing: -.02em;
+  // }
+}

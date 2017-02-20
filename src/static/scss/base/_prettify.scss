@@ -1,0 +1,56 @@
+.prettyprint {
+  padding: 0;
+  color: #adcdd7;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Inconsolata', monospace;
+  max-width: 800px;
+
+  &::-moz-selection {
+    background-color: rgba(0,0,0,.1);
+    color: #fff;
+    text-shadow: none;
+  }
+  &::selection {
+    background-color: rgba(0,0,0,.1);
+    color: #fff;
+    text-shadow: none;
+    -webkit-appearance: none;
+  }
+
+  .nocode { background-color: none; color: #000 }
+  .str { color: #ffa0a0 } /* string  - pink */
+  .kwd { color: #f0e68c; }
+  .com { color: #ffa0a0 } /* comment - skyblue */
+  .typ { color: #98fb98 } /* type    - lightgreen */
+  .lit { color: #cd5c5c } /* literal - darkred */
+  .pun { color: #71deff; }    /* punctuation */
+  .tag { color: #ff6975; } /* html/xml tag    - lightyellow */
+  .atn { color: #ffca57; } /* attribute name  - khaki */
+  .atv { color: #b9eb80 } /* attribute value - pink */
+  .dec { color: #98fb98 } /* decimal         - lightgreen */
+  .pln { color: rgba(255, 255, 255, .5);
+
+  li:last-child .pln:first-child {
+    width: 0;
+    margin-top: 4px;
+  }
+
+    .highlight {
+      color: rgba(179, 45, 71, 1.0);
+    }
+  } // .html-code
+
+
+
+  ::selection {
+    background: #98b5c3; // WebKit/Blink Browsers
+    color: inherit;
+  }
+
+  ::-moz-selection {
+    background: #98b5c3; // Gecko Browsers
+    color: inherit;
+  }
+}

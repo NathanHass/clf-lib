@@ -1,0 +1,19 @@
+{% set safeName = name|lower|replace({' ': '-' }) %}
+{% set id = 'component--' ~ safeName %}
+{% set file = 'components/' ~ safeName ~ '.twig' %}
+
+<li class="sg__item" id="{{id}}">
+  <div class="sg__nav">
+    <h3 class="sg__title">{{name}}</h3>
+    <button class="sg__code-toggle js-toggle-code">View Code</button>
+  </div>
+  {# <div class="sg__hgroup">
+  </div> #}
+  <div class="sg__example">
+    {% include file %}
+  </div>
+  <div class="sg__code-mod">
+    <pre class="js-code-block prettyprint lang-html">
+    </pre>
+  </div>
+</li>

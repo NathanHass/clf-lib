@@ -1,0 +1,87 @@
+---
+title: clover style lib
+---
+{% extends "layouts/base.twig" %}
+
+{% block nav %}{% endblock %}
+
+
+{% block content %}
+
+  {% set sg__components = [
+    {
+      'title' : 'Basics',
+      'components' : [
+        {
+          'name': 'Colors'
+        },{
+          'name': 'Fonts'
+        }]
+      },
+      {
+        'title' : 'Text Styles',
+        'components' : [
+          {
+            'name': 'Headings'
+          },{
+            'name': 'Text Styles'
+          },{
+            'name': 'Bulleted List'
+          },{
+            'name': 'Numbered List'
+          },{
+            'name': 'Tables'
+          }]
+        },
+      {
+        'title' : 'Buttons Styles',
+        'components' : [
+          {
+            'name': 'button'
+          },{
+            'name': 'Icon Buttons'
+          },{
+            'name': 'Text Buttons'
+          }]
+        },
+      {
+        'title' : 'Form Styles',
+        'components' : [
+          {
+            'name': 'Text Field'
+          },{
+            'name': 'Text Area'
+          },{
+            'name': 'Select Menu'
+          },{
+            'name': 'Radio Button'
+          },{
+            'name': 'Checkbox'
+          }]
+        }
+    ]%}
+
+  <div class="sg__content-mod">
+    {# Loop over all data for components #}
+    {% for section in sg__components %}
+      <h3 class="sg__section-h">{{section.title}}</h3>
+
+      <ul class="sg__list">
+        {% for component in section.components %}
+          {% include 'layouts/component-mod.twig' with
+            { 'name': component.name,
+              'file': component.file,
+              'description': component.description }
+          %}
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  </div>
+{% endblock %}
+
+
+
+{% block scripts %}
+  <script type="text/javascript" src="/bower_components/google-code-prettify/src/prettify.js"></script>
+  <script type="text/javascript" src="/static/js/main.js"></script>
+{% endblock %}
